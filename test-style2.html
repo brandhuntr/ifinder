@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test Style 2</title>
+    <link rel="stylesheet" href="jh-style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>I-Finder Test</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Test Style 2</h5>
+                <p class="card-text">질문: 새로운 일을 맡을 때, 어떤 방법으로 준비하시나요?</p>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="nextQuestion('p')">P: 혼자 준비 하는 것이 마음 편하다.</button>
+                    <button class="btn btn-primary" onclick="nextQuestion('t')">T: 동료들과 협력하여 준비해야 안심이 된다.</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function nextQuestion(answer) {
+            if (answer === 'p') {
+                localStorage.setItem('test2', 'p');
+            } else if (answer === 't') {
+                localStorage.setItem('test2', 't');
+            }
+            window.location.href = 'test-style3.html';
+        }
+    </script>
+</body>
+
+</html>
