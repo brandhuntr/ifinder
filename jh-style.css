@@ -1,0 +1,62 @@
+   /* jh style 시작 */
+   body {
+    background-color: #f8f9fa;
+    color: #000;
+    font-family: Arial, sans-serif;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .test-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+  }
+
+  .card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .card-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .card {
+    text-align: center;
+  }
+
+  .card-text {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .btn {
+    background-color: #ff69b4;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #fff;
+    color: #ff69b4;
+    border: 1px solid #ff69b4;
+  }
+  /* jh style 끝 */

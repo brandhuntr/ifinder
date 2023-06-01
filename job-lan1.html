@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talent Test - Job Lan 1</title>
+  <link rel="stylesheet" href="jh-style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="test-title">Talent Test</h1>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Job Lan 1</h5>
+        <p class="card-text">
+            일상 생활에서 자주 글을 쓰거나 기록하는 습관이 있으신가요?<br>
+            블로그나 일상을 공유하는 플랫폼을 운영하고 있나요? 
+        </p>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="nextQuestion('a')">예</button>
+          <button class="btn btn-primary" onclick="nextQuestion('b')">아니오</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function nextQuestion(answer) {
+      // 여기에 선택한 답변에 따른 로직을 추가해주세요
+      if (answer === 'a') {
+        localStorage.setItem('jobLan1', '예');
+      } else if (answer === 'b') {
+        localStorage.setItem('jobLan1', '아니오');
+      }
+      // 다음 페이지로 이동 (선택한 버튼에 따라 다른 페이지로 이동 가능)
+      window.location.href = 'job-lan2.html';
+    }
+  </script>
+</body>
+
+</html>

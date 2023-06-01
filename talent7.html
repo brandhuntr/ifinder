@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Identity Test</title>
+  <link rel="stylesheet" href="jh-style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="test-title">My Identity Test</h1>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Talent 7</h5>
+        <p class="card-text">아래 중 더 선호하는 영역을 선택하세요.</p>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="nextQuestion('a')">운동 또는 춤을 좋아하시나요?</button>
+          <button class="btn btn-primary" onclick="nextQuestion('b')">자연 환경이나 동물에 대한 관심이 있으신가요?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function nextQuestion(answer) {
+      // 여기에 선택한 답변에 따른 로직을 추가해주세요
+      if (answer === 'a') {
+        localStorage.setItem('talent7', '운동 또는 춤');
+      } else if (answer === 'b') {
+        localStorage.setItem('talent7', '자연 환경, 동물에 대한 관심');
+      }
+      // 여기에 다음 페이지로 이동하는 로직을 추가해주세요
+      window.location.href = 'talent8.html'; // 다음 talent 페이지로 이동
+    }
+  </script>
+</body>
+
+</html>

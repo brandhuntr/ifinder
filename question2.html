@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Identity Test</title>
+  <link rel="stylesheet" href="jh-style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="test-title">My Identity Test</h1>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">질문 2</h5>
+        <p class="card-text">당신은 총 천만 원의 상금이 걸린 퀴즈쇼에 참여했습니다.<br>
+            당신은 이미 백만원을 확보했고 계속 진행할 지 여부를 결정해야 합니다.</p>
+        <div class="btn-group">
+          <button class="btn" onclick="nextQuestion('a')">백만 원이라는 돈을 확보했으니 여기서 그만한다. </button>
+          <button class="btn" onclick="nextQuestion('b')">백만 원을 잃더라도 이왕 시작했으니 천만 원까지 도전해 본다. </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function nextQuestion(answer) {
+      // 여기에 다음 질문으로 넘어가는 로직을 추가해주세요
+      if (answer === 'a') {
+        localStorage.setItem('question2', '안정');
+      } else if (answer === 'b') {
+        localStorage.setItem('question2', '성장');
+      }
+      window.location.href = 'question3.html';
+    }
+  </script>
+</body>
+
+</html>
