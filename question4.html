@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moment 테스트 - 질문 4</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-pzjw8f+ua7Kw1TIq+hj0ahLp3trPJ7Js/hRS6O+n5Gwea5SwBNEuw+OrCXaRkf5"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Moment 테스트</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">질문 4</h5>
+                <p class="card-text">당신은 아래의 두 프로젝트 중 하나를 선택해야 합니다.</p>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="nextQuestion('a')">a. 매년 정기적으로 진행하던 업무라 무난하게 진행할 수 있다. (안정)</button>
+                    <button class="btn btn-primary" onclick="nextQuestion('b')">b. 회사에서 새롭게 추진하는 신사업을 맡아 보겠다. (성장)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-pzjw8f+ua7Kw1TIq+hj0ahLp3trPJ7Js/hRS6O+n5Gwea5SwBNEuw+OrCXaRkf5"
+        crossorigin="anonymous"></script>
+    <script>
+        function nextQuestion(answer) {
+            // 여기에 다음 질문으로 넘어가는 로직을 추가해주세요
+            if (answer === 'a') {
+                localStorage.setItem('question4', '안정');
+            } else if (answer === 'b') {
+                localStorage.setItem('question4', '성장');
+            }
+            window.location.href = 'question5.html';
+        }
+    </script>
+</body>
+
+</html>

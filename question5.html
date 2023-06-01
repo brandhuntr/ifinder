@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moment 테스트 - 질문 5</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-pzjw8f+ua7Kw1TIq+hj0ahLp3trPJ7Js/hRS6O+n5Gwea5SwBNEuw+OrCXaRkf5"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Moment 테스트</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">질문 5</h5>
+                <p class="card-text">업무 중에 비상벨이 울렸습니다.</p>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="nextQuestion('a')">a. 혹시 모르니 우선 안전한 곳으로 대피해야 한다. (안정)</button>
+                    <button class="btn btn-primary" onclick="nextQuestion('b')">b. 자세한 상황을 모르니 굳이 신경 쓸 필요는 없을 것이다. (성장)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-pzjw8f+ua7Kw1TIq+hj0ahLp3trPJ7Js/hRS6O+n5Gwea5SwBNEuw+OrCXaRkf5"
+        crossorigin="anonymous"></script>
+    <script>
+        function nextQuestion(answer) {
+            // 여기에 다음 질문으로 넘어가는 로직을 추가해주세요
+            if (answer === 'a') {
+                localStorage.setItem('question5', '안정');
+            } else if (answer === 'b') {
+                localStorage.setItem('question5', '성장');
+            }
+            // 다섯 번째 질문 이후 결과 판별 및 결과 페이지로 이동
+            var question1 = localStorage.getItem('question1');
+            var question2 = localStorage.getItem('question2');
+            var question3 = localStorage.getItem('question3');
+            var question4 = localStorage.getItem('question4');
+            var question5 = localStorage.getItem('question5');
+            
+            var stabilityCount = 0;
+            var growthCount = 0;
+            
+            // 안정형과 성장형 답변 개수 카운팅
+            if (question1 === '안정') {
+                stabilityCount++;
+            } else if (question1 === '성장') {
+                growthCount++;
+            }
+            if (question2 === '안정') {
+                stabilityCount++;
+            } else if (question2 === '성장') {
+                growthCount++;
+            }
+            if (question3 === '안정') {
+                stabilityCount++;
+            } else if (question3 === '성장') {
+                growthCount++;
+            }
+            if (question4 === '안정') {
+                stabilityCount++;
+            } else if (question4 === '성장') {
+                growthCount++;
+            }
+            if (question5 === '안정') {
+                stabilityCount++;
+            } else if (question5 === '성장') {
+                growthCount++;
+            }
+            
+            // 결과 판별 및 결과 페이지로 이동
+            if (stabilityCount >= 3) {
+                window.location.href = 'result.html?result=안정형입니다';
+            } else if (growthCount >= 3) {
+                window.location.href = 'result.html?result=성장형입니다';
+            } else {
+                window.location.href = 'result.html';
+            }
+        }
+    </script>
+</body>
+
+</html>
