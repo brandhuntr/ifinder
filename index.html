@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moment 테스트 - 시작 페이지</title>
+  <style>
+    /* jh style 시작 */
+    body {
+      background-color: #f8f9fa;
+      color: #000;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .test-title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    .card {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .card-text {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .btn {
+      background-color: #ff69b4;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #fff;
+      color: #ff69b4;
+      border: 1px solid #ff69b4;
+    }
+    /* jh style 끝 */
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="test-title">I-Finder Test</h1>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">I-Finder Test에 오신 것을 환영합니다!</h5>
+        <p class="card-text">
+          당신의 성향과 잠재된 재능을 알아보는 테스트입니다. <br>
+          아래의 버튼을 클릭하여 시작해주세요.</p>
+        <div class="btn-group">
+          <button class="btn" onclick="startTest()">시작하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function startTest() {
+      window.location.href = 'question1.html';
+    }
+  </script>
+</body>
+
+</html>

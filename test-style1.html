@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moment 테스트 - Test Style 1</title>
+  <style>
+    /* jh style 시작 */
+    body {
+      background-color: #f8f9fa;
+      color: #000;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .test-title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    .card {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .btn {
+      background-color: #ff69b4;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #fff;
+      color: #ff69b4;
+      border: 1px solid #ff69b4;
+    }
+    /* jh style 끝 */
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="test-title">Test Style 1</h1>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">질문</h5>
+        <p class="card-text">당신이 담당한 프로젝트에서 동료가 어려움에 처했다면,</p>
+        <div class="btn-group">
+          <button class="btn" onclick="nextQuestion('a')">내 일에 먼저 끝내는 게 좋을까요?</button>
+          <button class="btn" onclick="nextQuestion('b')">동료의 일을 함께 끝낼 수 있는 방법으로 가야 한다고 생각하세요?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function nextQuestion(answer) {
+      // 여기에 다음 질문으로 넘어가는 로직을 추가해주세요
+      if (answer === 'a') {
+        localStorage.setItem('question1', 'p');
+      } else if (answer === 'b') {
+        localStorage.setItem('question1', 't');
+      }
+      window.location.href = 'test-style2.html';
+    }
+  </script>
+</body>
+
+</html>
