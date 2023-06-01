@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test-Style 2</title>
+    <link rel="stylesheet" href="jh-style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="question">(p)와 (t)에 해당하는 내용은 선택하지 않으셔도 됩니다.</h1>
+        <div class="choices">
+            <p>(p) 혼자 준비하는 것이 마음 편하다.</p>
+            <p>(t) 동료들과 협력하여 준비해야 안심이 된다.</p>
+        </div>
+        <button class="btn" onclick="nextQuestion('p')">p</button>
+        <button class="btn" onclick="nextQuestion('t')">t</button>
+    </div>
+
+    <script>
+        function nextQuestion(answer) {
+            // 여기에 다음 질문으로 넘어가는 로직을 추가해주세요
+            if (answer === 'p') {
+                localStorage.setItem('question2', '개인중심');
+            } else if (answer === 't') {
+                localStorage.setItem('question2', '집단중심');
+            }
+            window.location.href = 'test-style3.html';
+        }
+    </script>
+</body>
+
+</html>
