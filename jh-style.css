@@ -1,61 +1,58 @@
-/* jh-style.css */
+   /* jh style 시작 */
+   body {
+    background-color: #f8f9fa;
+    color: #000;
+    font-family: Arial, sans-serif;
+  }
 
-/* 전체 페이지 스타일 */
-body {
-  font-family: Arial, sans-serif;
-  color: white;
-  background-color: #f06292;
-  margin: 0;
-  padding: 0;
-}
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
 
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-}
+  .test-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+  }
 
-/* 버튼 스타일 */
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 10px 0;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  background-color: #ff4081;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
+  .card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
 
-.btn:hover {
-  background-color: white;
-  color: #ff4081;
-}
+  .card-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
 
-/* 질문 스타일 */
-.question {
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
+  .card-text {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
 
-/* 선택지 스타일 */
-.choices {
-  text-align: center;
-}
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+  }
 
-.choices p {
-  display: inline-block;
-  margin: 10px;
-  font-size: 16px;
-  font-weight: bold;
-}
+  .btn {
+    background-color: #ff69b4;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
 
-/* 숨김 클래스 */
-.hide {
-  display: none;
-}
+  .btn:hover {
+    background-color: #fff;
+    color: #ff69b4;
+    border: 1px solid #ff69b4;
+  }
+  /* jh style 끝 */
