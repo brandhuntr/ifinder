@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>성향 테스트</title>
+    <style>
+        .question {
+            display: none;
+        }
+
+        .result {
+            display: none;
+        }
+    </style>
+    <script>
+        // 답변을 저장할 객체
+        var answers = {
+            personal_or_organizational: [],
+            adventure_or_stability: [],
+            systematic_or_flexible: [],
+            extraversion_or_introversion: []
+        };
+
+        var currentQuestionIndex = 0; // 현재 질문 인덱스
+
+        // 다음 질문 표시
+        function showNextQuestion() {
+            var questions = document.getElementsByClassName("question");
+            if (currentQuestionIndex < questions.length - 1) {
+                questions[currentQuestionIndex].style.display = "none";
+                currentQuestionIndex++;
+                questions[currentQuestionIndex].style.display = "block";
+            } else {
+                determinePersonality();
+            }
+        }
+
+        // 질문과 답변을 처리하는 함수
+        function processAnswer(questionId, answer) {
+            answers[questionId].push(answer);
+            showNextQuestion();
+        }
+
+        // 테스트 완료 후 성향 결정 함수
+        function determinePersonality() {
+            var personality = "";
+
+            var personal_or_organizational = answers.personal_or_organizational.filter(answer => answer === "Yes").length;
+            var adventure_or_stability = answers.adventure_or_stability.filter(answer => answer === "Yes").length;
+            var systematic_or_flexible = answers.systematic_or_flexible.filter(answer => answer === "Yes").length;
+            var extraversion_or_introversion = answers.extraversion_or_introversion.filter(answer => answer === "Yes").length;
+
+            if (personal_or_organizational >= 3) {
+                personality += "Personal ";
+            } else {
+                personality += "Organizational ";
+            }
+
+            if (adventure_or_stability >= 3) {
+                personality += "Adventure ";
+            } else {
+                personality += "Stability ";
+            }
+
+            if (systematic_or_flexible >= 3) {
+                personality += "Systematic ";
+            } else {
+                personality += "Flexible ";
+            }
+
+            if (extraversion_or_introversion >= 3) {
+                personality += "Extraversion";
+            } else {
+                personality += "Introversion";
+            }
+
+            // 결과 페이지로 이동
+            showResultPage(personality);
+        }
+
+        // 결과 페이지 표시 함수
+        function showResultPage(personality) {
+            // 질문 페이지 숨기기
+            var questionPage = document.getElementById("questionPage");
+            questionPage.style.display = "none";
+
+            // 결과 페이지 표시
+            var resultPage = document.getElementById("resultPage");
+            resultPage.style.display = "block";
+
+            // 선택한 개수와 결과 표시
+            var personal_or_organizationalCount = answers.personal_or_organizational.filter(answer => answer === "Yes").length;
+            var adventure_or_stabilityCount = answers.adventure_or_stability.filter(answer => answer === "Yes").length;
+            var systematic_or_flexibleCount = answers.systematic_or_flexible.filter(answer => answer === "Yes").length;
+            var extraversion_or_introversionCount = answers.extraversion_or_introversion.filter(answer => answer === "Yes").length;
+
+            document.getElementById("personal_or_organizationalCount").innerHTML = personal_or_organizationalCount;
+            document.getElementById("adventure_or_stabilityCount").innerHTML = adventure_or_stabilityCount;
+            document.getElementById("systematic_or_flexibleCount").innerHTML = systematic_or_flexibleCount;
+            document.getElementById("extraversion_or_introversionCount").innerHTML = extraversion_or_introversionCount;
+
+            var resultText = "";
+            if (personality === "organizational Adventure Systematic Extraversion") {
+                resultText = 
+                "최프로님은 조직 내에서의 능력도 관계도 좋은 편입니다. 안정된 환경에서 일하길 선호하지만 그 안에서 새로운 일을 추진하길 좋아하고 효율적으로 일을 처리합니다. 조직 내외부의 사람들과 두루 관계를 맺고 협업을 원활하게 이끌어냅니다.";
+            } 
+            else if (personality === "organizational Adventure Systematic Introversion") {
+                resultText = 
+                "최프로님은 ‘꼼꼼한 관리자’형이시군요.조직 내에서의 야심도 있지만 기획 부서 보다는 관리 파트가 더 적합한 스타일입니다. 체계적이고 현실적인 사고 방식을 갖고 있으며, 두루 사람들과 어울리는 스타일은 아니지만 깔끔한 일처리로 윗사람들에게 인정 받을 수 있습니다.";
+            } 
+            else if (personality === "organizational Adventure Flexible Extraversion") {
+                resultText = 
+                "최프로님은 ‘대담한 카리스마’형이시군요. 직관적이고 창의적인 발상으로 항상 새로운 프로젝트를 주도하는 것을 즐깁니다. 모험적인 일을 좋아하지만 것과 동시에 안정된 조직 속에서 성장하기를 원한다. 큰 프로젝트를 수행할 때 에너지를 얻고 다른 사람들과 함께 일하고 시간을 보내는 것을 선호합니다.";
+            } 
+            else if (personality === "organizational Adventure Flexible Introversion") {
+                resultText = 
+                "최프로님은 ‘지혜로운 책략가’형이시군요.새로운 아이디어가 많고 야심도 있지만 본인이 직접 주도하기 보다는 전략을 세우고 안정적인 환경에서 지원을 하는 방식으로 진행되길 바랍니다. 본인의 생각을 사람들과 함께 추진하는 것 보다는 자신만의 시간과 공간 속에서 집중할 수 있을 때 성과가 높습니다.";
+            } 
+            else if (personality === "organizational Stability Systematic Extraversion") {
+                resultText = 
+                "최프로님은 ‘분위기 메이커’형이시군요. 체계적이고 구조화된 환경을 좋아하며 규칙과 프로세스를 중요시 합니다. 조직 내에서 두루 관계가 좋고 주변 사람들을 꼼꼼하게 챙깁니다. 사람들의 협업을 이끌어내는 능력은 조직 내에서의 소통과 협력을 이끌어내는데 도움을 줄 수 있습니다";
+            } 
+            else if (personality === "organizational Stability Systematic Introversion") {
+                resultText = 
+                "최프로님은 ‘숨겨진 보석’형이시군요. 일의 예측 가능성과 조직의 안정성을 중요시 합니다. 안정된 환경에서 독립적으로 일을 하기를 선호합니다. 조직 내에서 주어진 역할에 성실하게 따라는 것을 중요하게 여기며 조직을 유지하는데 필수적인 역할을 합니다.";
+            }
+            else if (personality === "organizational Stability Flexible Extraversion") {
+                resultText = 
+                "최프로님은 ‘창조적 중재자’형이시군요. 조직 내에서 적극적이고 조직원들과의 관계도 좋습니다. 예기치 않은 상황에 대한 대처 능력이 뛰어나며 사람들과의 상호 작용을 통해서 에너지를 얻습니다. 새로운 아이디어를 적극적으로 수용하며 상호간의 시너지를 만들어 내는 데 능숙한 유형입니다.";
+            } 
+            else if (personality === "organizational Stability Flexible Introversion") {
+                resultText = 
+                "최프로님은 ‘조용한 크리에이터’형이시군요.조용하지만 항상 창의적인 생각을 하고 있습니다. 융통성 있는 사고와 적응력을 바탕으로 문제 해결과 협업을 원활하게 진행하는 편입니다. 하지만 혼자 생각하고 집중하는 시간을 중요시 합니다.";
+            }
+            // (9) 개인 모험 체계 외향 
+            else if (personality === "Personal Adventure Systematic Extraversion") {
+                resultText = 
+                "최프로님은 ‘도전하는 창업가’형이시군요.나와 다른 스타일의 조직과는 맞지 않는 성향입니다. 하지만 사람들과의 관계를 중요시하고 새로운 도전을 하는 것을 좋아합니다. 내가 향후 도전해보고 싶은 일들에 대한 명확한 계획을 세우고 이러한 방향성에 필요한 네트워크를 만들어 가는 데 노력해야 합니다.";
+            } 
+            // (10) 개인 모험 체계 내향 
+            else if (personality === "Personal Stability Systematic Introversion") {
+                resultText = 
+                "최프로님은 ‘조용한 전문가’형이시군요. 조직 보다는 혼자 일을 할 수 있는 환경에서 안정감을 느낍니다. 새로운 도전을 좋아하지만 무모한 시도 보다는 어느 정도 예측 가능한 범주에서 진행될 수 있기를 바랍니다. 나만의 인사이트를 적극적으로 개발하고, 이러한 인사이트를 함께 발전시키고 협력할 수 있는 파트너 그룹을 만드는 것이 중요합니다. 성장에 초점을 맞춘다면 워즈니악이 잡스를 만나서 애플을 만들었듯 비즈니스적인 성향을 가진 사람이, 안정에 초점을 맞춘다면 내가 전문성을 키우고 싶은 분야의 협력자들을 만나는 것이 도움이 될 수 있습니다.";
+            }
+            // (11) 개인 모험 융통 외향 : 창의적인 네트워커 
+            else if (personality === "Personal Adventure Flexible Extraversion") {
+                resultText = 
+                "최프로님은 ‘창의적인 네트워커’형이시군요. 나만의 방식으로 일이 진행되는 것을 선호합니다. 내가 집중해야 하는 역량은 나의 창의성과 네트워킹입니다. 나는 사람들과의 관계를 통해 새로운 아이디어와 협업 기회를 만들어 낼 수 있으므로 현재하고 있는 일 외에라도 내가 도전해 보고 싶은 영역에서의 네트워크를 쌓아갈 필요가 있습니다. 이런 다양한 협력 관계 속에 잠재력을 최대한 끌어낼 수 있습니다.";
+            } 
+             // (12) 개인 모험 융통 내향 : 독립적 크리에이터 
+            else if (personality === "Personal Adventure Flexible Introversion") {
+                resultText = 
+                "최프로님은 ‘독립적인 크리에이터’형이시군요.혼자 있을 때 안정감을 느낍니다. 조직 밖에서 나의 가치를 찾기 위해서는 나의 내적인 면에 더 집중을 할 필요가 있습니다. 내가 도전하고 싶은 분야에 대한 독서와 공부를 통해 내가 진짜 도전하고 싶은 일을 명확히 규정하고 더 잘 이해할 필요가 있습니다. 많은 사람들과의 관계를 지향하지는 않더라도 정기적인 독서모임이나 작은 커뮤니티를 통해 새로운 인사이트를 얻는 것도 고할 필요가 있습니다.";
+            } 
+             // (13) 개인 안정 체계 외향 : 1인 기업가 
+             else if (personality === "Personal Stability Systematic Extraversion") {
+                resultText = 
+                "최프로님은 ‘1인 기업가’형이시군요. 큰 조직에 속해 있길 바라지는 않지만 안정성 또한 중요하게 여깁니다. 가장 중요한 것은 개인의 브랜딩과 리더십을 키우는 것입니다. 나의 가치를 알아줄 수 있는 이들이나 협업을 할 수 있는 전문가들과의 적극적인 소통을 통해 내 가치를 더욱 발전시킬 수 있습니다. 다양한 플랫폼이나 SNS 등을 통해 이들과의 네트워킹을 이끌어 내는 것이 중요합니다. ";
+            } 
+             // (14) 개인 안정 체계 내향 : 재야의 고수 
+             else if (personality === "Personal Stability Systematic Introversion") {
+                resultText = 
+                "최프로님은 ‘재야의 고수’형이시군요. 혼자 집중할 수 있는 안정된 업무 환경을 선호합니다. 조직에 속하지 않으면서도 일이 체계적이고 안정적으로 진행되기를 바라기 때문에, 나만의 콘텐츠가 중요합니다. 내가 전문성을 가진, 또는 내가 관심을 가진 영역에 대한 콘텐츠를 개발하고 이를 통해 수익성을 확보할 필요가 있습니다. 사람들과의 적극적인 관계를 선호하지 않으므로 작은 커뮤니티나, 나만의 정보 획득 노하우를 개발해서 트렌드에 뒤쳐지지 않도록 노력해야 합니다.";
+            } 
+             // (15) 개인 안정 융통 외향 : 리더십 있는 크리에이터 
+             else if (personality === "Personal Stability Flexible Extraversion") {
+                resultText = 
+                "최프로님은 ‘리더십 있는 크리에이터’형이시군요. 독립적인 업무 환경이 중요하지만 예측 가능성과 안정성 또한 중요하게 여깁니다. 가장 중요한 것은 개인의 브랜딩과 리더십입니다. 나의 가치가 명확히 드러날 수 있는 플랫폼이나 네트워크와 연계하는 것이 필요합니다. 다양한 사람들과의 교류를 통해 새로운 아이디어를 얻을 수 있으며 새로운 성장 가능성을 만들어낼 수도 있습니다. 나의 가치를 공유하는 조직의 리더를 맡거나 중요한 역할을 수행함으로써 더 큰 성과를 이뤄낼 수 있습니다.";
+            } 
+             // (16) 개인 안정 융통 내향 : 은둔형 크리에이터  
+             if (personality === "Personal Stability  Flexible Extraversion") {
+                resultText = 
+                "최프로님은 ‘은둔형 크리에이터’형이시군요. 무엇보다 중요한 것은 독립적이고 안정적인 환경을 마련하는 것입니다. 나를 중심으로 업무의 환경이 조성되기 위해서는 나만의 콘텐츠나 나의 전문성을 증빙할 수 있는 브랜드(또는 라이센스)가 필요합니다. 쌍방향의 소통을 선호하진 않더라도 나의 역량을 발휘할 수 있는 채널들을 통해 고정적인 지지층을 확보하는 것이 도움이 될 수 있습니다. ";
+            } 
+            document.getElementById("resultText").innerHTML = resultText;
+        }
+    </script>
+</head>
+<body>
+    <div id="questionPage">
+        <h1>성향 테스트</h1>
+        <!-- 개인 or 조직 성향 질문들 -->
+        <div class="question" style="display: block;">
+            <h2>개인 or 조직 성향</h2>
+            <label>Question 1: 나는 혼자 일을 할 때 보다 팀으로 일을 할 때 더 업무 효율이 높은 편이다.</label>
+            <input type="radio" name="personal_or_organizational_q1" value="Yes" onchange="processAnswer('personal_or_organizational', this.value)"> Yes
+            <input type="radio" name="personal_or_organizational_q1" value="No" onchange="processAnswer('personal_or_organizational', this.value)"> No
+        </div>
+        <div class="question">
+            <h2>개인 or 조직 성향</h2>
+            <label>Question 2: 조직에 속해 있을 때 불필요한 절차나 이해하기 힘든 규칙들을 견디기 어렵다.</label>
+            <input type="radio" name="personal_or_organizational_q2" value="Yes" onchange="processAnswer('personal_or_organizational', this.value)"> Yes
+            <input type="radio" name="personal_or_organizational_q2" value="No" onchange="processAnswer('personal_or_organizational', this.value)"> No
+        </div>
+        <div class="question">
+            <h2>개인 or 조직 성향</h2>
+            <label>Question 3: 조직에 속해 있을 때 안정감이 든다. 내가 어디에 소속되어 있는가는 나의 중요한 일부이다.</label>
+            <input type="radio" name="personal_or_organizational_q3" value="Yes" onchange="processAnswer('personal_or_organizational', this.value)"> Yes
+            <input type="radio" name="personal_or_organizational_q3" value="No" onchange="processAnswer('personal_or_organizational', this.value)"> No
+        </div>
+        <div class="question">
+            <h2>개인 or 조직 성향</h2>
+            <label>Question 4: 조직 내에서 크게 성장하고 싶다는 생각을 한다. 가능하다면 더 큰 조직에서 일을하고 싶다.</label>
+            <input type="radio" name="personal_or_organizational_q4" value="Yes" onchange="processAnswer('personal_or_organizational', this.value)"> Yes
+            <input type="radio" name="personal_or_organizational_q4" value="No" onchange="processAnswer('personal_or_organizational', this.value)"> No
+        </div>
+        <div class="question">
+            <h2>개인 or 조직 성향</h2>
+            <label>Question 5: 여럿이 한 업무에 투입되는 건 비효율적이라고 본다. 일을 쪼개서 각자 처리하는 것이 낫다.</label>
+            <input type="radio" name="personal_or_organizational_q5" value="Yes" onchange="processAnswer('personal_or_organizational', this.value)"> Yes
+            <input type="radio" name="personal_or_organizational_q5" value="No" onchange="processAnswer('personal_or_organizational', this.value)"> No
+        </div>
+       <!-- 모험 or 안정 질문들 -->
+       <div class="question">
+        <h2>모험 or 안정 성향</h2>
+        <label>Question 1: 내가 도전해 보고 싶었던 일을 할 기회가 온다면 지금까지의 경력을 포기할 수도 있다.</label>
+        <input type="radio" name="adventure_or_stability_q1" value="Yes" onchange="processAnswer('adventure_or_stability', this.value)"> Yes
+        <input type="radio" name="adventure_or_stability_q1" value="No" onchange="processAnswer('adventure_or_stability', this.value)"> No
+    </div>
+    <div class="question">
+        <h2>모험 or 안정 성향</h2>
+        <label>Question 2: 성장 가능성이 크더라도 막 창업한 회사 보다는 이미 자리 잡은 안정적인 회사가 낫다고 생각한다.</label>
+        <input type="radio" name="adventure_or_stability_q2" value="Yes" onchange="processAnswer('adventure_or_stability', this.value)"> Yes
+        <input type="radio" name="adventure_or_stability_q2" value="No" onchange="processAnswer('adventure_or_stability', this.value)"> No
+    </div>
+    <div class="question">
+        <h2>모험 or 안정 성향</h2>
+        <label>Question 3: 직업이나 일을 선택할 때 안정성이 중요하다. 결과를 예측할 수 없는 일엔 집중이 되지 않는다.</label>
+        <input type="radio" name="adventure_or_stability_q3" value="Yes" onchange="processAnswer('adventure_or_stability', this.value)"> Yes
+        <input type="radio" name="adventure_or_stability_q3" value="No" onchange="processAnswer('adventure_or_stability', this.value)"> No
+    </div>
+    <div class="question">
+        <h2>모험 or 안정 성향</h2>
+        <label>Question 4: 때로는 남들이 반대하더라도 내가 하고 싶은 방식으로 일어 붙일 때가 있다.</label>
+        <input type="radio" name="adventure_or_stability_q4" value="Yes" onchange="processAnswer('adventure_or_stability', this.value)"> Yes
+        <input type="radio" name="adventure_or_stability_q4" value="No" onchange="processAnswer('adventure_or_stability', this.value)"> No
+    </div>
+    <div class="question">
+        <h2>모험 or 안정 성향</h2>
+        <label>Question 5: 새로운 일에 첫번째로 도전하기 보다 검증된 방식으로 진행하는 편이다.</label>
+        <input type="radio" name="adventure_or_stability_q5" value="Yes" onchange="processAnswer('adventure_or_stability', this.value)"> Yes
+        <input type="radio" name="adventure_or_stability_q5" value="No" onchange="processAnswer('adventure_or_stability', this.value)"> No
+    </div>
+
+    <!-- 체계 or 융통 질문들 -->
+    <div class="question">
+        <h2>체계 or 융통 성향</h2>
+        <label>Question 1: 일을 할 때 항상 사전에 계획을 먼저 세우는 편이다. 계획된 대로 진행되지 않으면 불안하다.</label>
+        <input type="radio" name="systematic_or_flexible_q1" value="Yes" onchange="processAnswer('systematic_or_flexible', this.value)"> Yes
+        <input type="radio" name="systematic_or_flexible_q1" value="No" onchange="processAnswer('systematic_or_flexible', this.value)"> No
+    </div>
+    <div class="question">
+        <h2>체계 or 융통 성향</h2>
+        <label>Question 2: 원래 하던 방식이 있더라도 새로운 아이디어가 있다면 적용해 보려고 시도한다.</label>
+        <input type="radio" name="systematic_or_flexible_q2" value="Yes" onchange="processAnswer('systematic_or_flexible', this.value)"> Yes
+        <input type="radio" name="systematic_or_flexible_q2" value="No" onchange="processAnswer('systematic_or_flexible', this.value)"> No
+    </div>
+    <div class="question">
+        <h2>체계 or 융통 성향</h2>
+        <label>Question 3: 일이 계획대로 진행되지 않으면 불안하다. 갑자기 계획을 바꾸는 경우는 거의 없다.</label>
+        <input type="radio" name="systematic_or_flexible_q3" value="Yes" onchange="processAnswer('systematic_or_flexible', this.value)"> Yes
+        <input type="radio" name="systematic_or_flexible_q3" value="No" onchange="processAnswer('systematic_or_flexible', this.value)"> No
+    </div>
+    <div class="question">
+        <h2>체계 or 융통 성향</h2>
+        <label>Question 4: 예상치 못한 상황이 발생한다면 계획을 다시 짜기 보다 수습할 수 있는 방법을 찾는다.</label>
+        <input type="radio" name="systematic_or_flexible_q4" value="Yes" onchange="processAnswer('systematic_or_flexible', this.value)"> Yes
+        <input type="radio" name="systematic_or_flexible_q4" value="No" onchange="processAnswer('systematic_or_flexible', this.value)"> No
+    </div>
+    <div class="question">
+        <h2>체계 or 융통 성향</h2>
+        <label>Question 5: 항상 새로운 아이디어를 적용하고 싶다. 내 아이디어가 현실화 되는 것을 보는 것이 즐겁다.</label>
+        <input type="radio" name="systematic_or_flexible_q5" value="Yes" onchange="processAnswer('systematic_or_flexible', this.value)"> Yes
+        <input type="radio" name="systematic_or_flexible_q5" value="No" onchange="processAnswer('systematic_or_flexible', this.value)"> No
+    </div>
+
+    <!-- 외향 or 내향 질문들 -->
+    <div class="question">
+        <h2>외향 or 내향 성향</h2>
+        <label>Question 1: 회사에서나 모임에서 앞에 나서는 일을 주로 맡는 편이다.</label>
+        <input type="radio" name="extraversion_or_introversion_q1" value="Yes" onchange="processAnswer('extraversion_or_introversion', this.value)"> Yes
+        <input type="radio" name="extraversion_or_introversion_q1" value="No" onchange="processAnswer('extraversion_or_introversion', this.value)"> No
+    </div>
+    <div class="question">
+        <h2>외향 or 내향 성향</h2>
+        <label>Question 2: 주로 다른 사람들과의 대화나 협업 중에 아이디어를 얻는 편이다.</label>
+        <input type="radio" name="extraversion_or_introversion_q2" value="Yes" onchange="processAnswer('extraversion_or_introversion', this.value)"> Yes
+        <input type="radio" name="extraversion_or_introversion_q2" value="No" onchange="processAnswer('extraversion_or_introversion', this.value)"> No
+    </div>
+    <div class="question">
+        <h2>외향 or 내향 성향</h2>
+        <label>Question 3: 혼자 책을 읽을 때나 사색을 할 때 새로운 영감을 얻는 경우가 많다.</label>
+        <input type="radio" name="extraversion_or_introversion_q3" value="Yes" onchange="processAnswer('extraversion_or_introversion', this.value)"> Yes
+        <input type="radio" name="extraversion_or_introversion_q3" value="No" onchange="processAnswer('extraversion_or_introversion', this.value)"> No
+    </div>
+    <div class="question">
+        <h2>외향 or 내향 성향</h2>
+        <label>Question 4: 여러 사람과 함께 있으면 오히려 집중이 안된다. 빨리 마무리하고 혼자 생각을 정리하는 게 낫다고 본다.</label>
+        <input type="radio" name="extraversion_or_introversion_q4" value="Yes" onchange="processAnswer('extraversion_or_introversion', this.value)"> Yes
+        <input type="radio" name="extraversion_or_introversion_q4" value="No" onchange="processAnswer('extraversion_or_introversion', this.value)"> No
+    </div>
+    <div class="question">
+        <h2>외향 or 내향 성향</h2>
+        <label>Question 5: 일이 막히면 혼자 고민하기 보다 이 일을 잘 알만한 사람이 누굴까 생각한다.</label>
+        <input type="radio" name="extraversion_or_introversion_q5" value="Yes" onchange="processAnswer('extraversion_or_introversion', this.value)"> Yes
+        <input type="radio" name="extraversion_or_introversion_q5" value="No" onchange="processAnswer('extraversion_or_introversion', this.value)"> No
+    </div>       
+        <button onclick="showNextQuestion()">다음</button>
+    </div>
+
+    <div id="resultPage" class="result">
+        <h1>결과</h1>
+
+        <p>개인 or 조직 성향 선택 개수: <span id="personal_or_organizationalCount"></span></p>
+        <p>모험 or 안정 성향 선택 개수: <span id="adventure_or_stabilityCount"></span></p>
+        <p>체계 or 융통 성향 선택 개수: <span id="systematic_or_flexibleCount"></span></p>
+        <p>외향 or 내향 성향 선택 개수: <span id="extraversion_or_introversionCount"></span></p>
+
+        <h2>결과</h2>
+        <p id="resultText"></p>
+    </div>
+</body>
+</html>
